@@ -11,7 +11,8 @@ var userSchema = mongoose.Schema({
     username : {type: String, required: true, unique: true},
     password : {type: String, required: true},
     first_name : {type: String, required:true},
-    last_name : {type: String, required:true}
+    last_name : {type: String, required:true},
+    role : {type: String, required:true}
 });
 
 
@@ -38,8 +39,12 @@ userSchema.methods.checkPassword = function (plainPassword, done) {
     });
 };
 
-userSchema.methods.name = function(){
+userSchema.methods.getName = function(){
     return this.username;
+};
+
+userSchema.methods.getRole = function () {
+    return this.role;
 };
 
 var User = mongoose.model("User", userSchema);

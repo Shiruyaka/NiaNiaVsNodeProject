@@ -30,7 +30,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
-    secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",//"b1bf814e4cde5bcbf5bdaf6ece05f80034e844a72017b3b60ace6c14d07d91d0",
+    secret: "b1bf814e4cde5bcbf5bdaf6ece05f80034e844a72017b3b60ace6c14d07d91d0",
     resave: true,
     saveUninitialized: true
 }));
