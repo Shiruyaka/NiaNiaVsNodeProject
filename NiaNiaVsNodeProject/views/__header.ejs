@@ -18,7 +18,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <% if (currentUser) { %>
-            <li> <a href="/myProfile"> Welcome <%= currentUser.name() %> </a> </li>
+            <li> <a href="/myProfile"> Hi, <%= currentUser.getName() %> </a> </li>
             <li> <a href="/logout">Logout</a> </li>
             <% } else { %>
                 <li><a href="/login">Log in</a></li>
@@ -42,3 +42,4 @@
             <%= info %>
         </div>
         <% }) %>
+    </div>

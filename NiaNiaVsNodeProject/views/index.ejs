@@ -1,5 +1,14 @@
 <% include __header.ejs%>
 
+
+<% if (currentUser) { %>
+    <% if (currentUser.role == "admin") { %>
+        <% include admin_menu.ejs%>
+    <% } else { %>
+        <% include user_menu.ejs%>
+    <% }%>
+<% }%>
+
 <h1>Pokemon Academy</h1>
 
 <% include __footer.ejs%>

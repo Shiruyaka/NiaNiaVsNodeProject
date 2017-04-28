@@ -32,7 +32,8 @@ router.post("/signup", function (req, res, next) {
             username: username,
             password: password,
             first_name: first_name,
-            last_name: last_name
+            last_name: last_name,
+            role : "user"
         });
 
         newUser.save(function (err, resp) {
