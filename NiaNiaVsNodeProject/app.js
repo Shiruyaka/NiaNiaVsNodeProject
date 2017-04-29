@@ -52,8 +52,8 @@ app.get("/", function (req, res) {
 
 app.use(express.static(path.resolve(__dirname, "images")));
 
-app.get('/admin_training', function(req, res) {
-    res.render('admin_training');
+app.get('/user_training', function(req, res) {
+    res.render('user_training');
 });
 
 app.use(function (req, res) {
