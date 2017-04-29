@@ -11,12 +11,11 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var passport = require("passport");
 var setUpPassport = require("./set_up_passport");
-
+var logger = require("morgan");
 var signup = require("./sign-up");
 var routes = require("./utils");
 
 var app = express();
-
 mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
 
 
@@ -27,6 +26,7 @@ app.set("port", 3000);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(logger("dev"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
@@ -52,6 +52,10 @@ app.get("/", function (req, res) {
 
 app.use(express.static(path.resolve(__dirname, "images")));
 
+app.get('/admin_training', function(req, res) {
+    res.render('admin_training');
+});
+
 app.use(function (req, res) {
     //res.statusCode = 404;
     res.render("404");
@@ -61,6 +65,3 @@ app.listen(app.get("port"), function () {
    console.log("Server is started on port" + app.get("port"));
 });
 
-app.get('/admin_training', function(req, res) {
-    res.render('admin_training');
-});
