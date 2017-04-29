@@ -10,5 +10,12 @@ var trainingSchema = mongoose.Schema(
     }
 );
 
+trainingSchema.find({}, function(err, docs) {
+    if (!err){
+        console.log(docs);
+        process.exit();
+    } else {throw err;}
+});
+
 var Training = mongoose.model("Training", trainingSchema);
 module.exports = Training;

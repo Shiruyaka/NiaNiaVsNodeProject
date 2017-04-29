@@ -60,3 +60,7 @@ app.use(function (req, res) {
 app.listen(app.get("port"), function () {
    console.log("Server is started on port" + app.get("port"));
 });
+
+app.get('/admin_training', function(req, res) {
+    res.render('admin_training');
+});
