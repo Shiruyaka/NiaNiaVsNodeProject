@@ -1,0 +1,51 @@
+<% include __header.ejs%>
+<% include admin_menu.ejs%>
+
+
+<div style="margin:10px;">
+    <div style="padding: 10px;">
+        <button type="button" class="btn btn-primary">Add new training</button>
+
+    </div>
+
+
+
+    <div style="padding: 10px;"  class="container">
+        <% if (trainings.length) { %>
+            <% trainings.forEach(function(training) { %>
+                <div class="row">
+
+                    <div class="col-xs-6 col-md-2">
+                        <h4><%= training.name %></h4>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2">
+                        <h6>health +<%= training.health %></h6>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2">
+                        <h6>agility +<%= training.agility %></h6>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2">
+                        <h6>attack +<%= training.attack %></h6>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2">
+                        <h6>defence +<%= training.defence %></h6>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2">
+                        <button type="button" class="btn btn-success">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+
+                </div>
+            <% }) %>
+
+        <% } else { %>   No trainings!
+        <% } %>
+    </div>
+</div>
+
+<% include __footer.ejs%>
