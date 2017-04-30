@@ -14,6 +14,7 @@ var setUpPassport = require("./set_up_passport");
 var logger = require("morgan");
 var signup = require("./sign-up");
 var routes = require("./utils");
+var Training = require("./models/training");
 
 var app = express();
 mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
@@ -53,11 +54,21 @@ app.get("/", function (req, res) {
 app.use(express.static(path.resolve(__dirname, "images")));
 
 app.get('/user_training', function(req, res) {
-    res.render('user_training');
+
+    Training.find({},function (err, trainings) {
+            if (err)
+                res.send(err);
+
+            console.log(trainings);
+
+            res.render('user_training', {
+                trainings: trainings
+            });
+        });
 });
 
 app.use(function (req, res) {
-    //res.statusCode = 404;
+    res.statusCode = 404;
     res.render("404");
 });
 

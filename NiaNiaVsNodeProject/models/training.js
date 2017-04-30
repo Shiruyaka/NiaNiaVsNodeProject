@@ -2,20 +2,14 @@ var mongoose = require("mongoose");
 
 var trainingSchema = mongoose.Schema(
     {
-        name: {type:String, required:true},
-        health: {type:Integer},
-        agility: {type:Integer},
-        attack: {type:Integer},
-        defence: {type:Integer}
+        name: {type: String, required:true},
+        health: {type: Number},
+        agility: {type: Number},
+        attack: {type: Number},
+        defence: {type: Number}
     }
 );
 
-trainingSchema.find({}, function(err, docs) {
-    if (!err){
-        console.log(docs);
-        process.exit();
-    } else {throw err;}
-});
 
 var Training = mongoose.model("Training", trainingSchema);
 module.exports = Training;
