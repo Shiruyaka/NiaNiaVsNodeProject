@@ -53,7 +53,7 @@ app.get("/", function (req, res) {
 
 app.use(express.static(path.resolve(__dirname, "images")));
 
-app.get('/user_training', function(req, res) {
+app.get('/admin_training', function(req, res) {
 
     Training.find({},function (err, trainings) {
             if (err)
@@ -61,7 +61,7 @@ app.get('/user_training', function(req, res) {
 
             console.log(trainings);
 
-            res.render('user_training', {
+            res.render('admin_training', {
                 trainings: trainings
             });
         });
