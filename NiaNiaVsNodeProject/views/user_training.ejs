@@ -1,10 +1,10 @@
 <% include __header.ejs%>
-<% include admin_menu.ejs%>
+<% include user_menu.ejs%>
 
 
 <div style="margin:10px;">
     <div style="padding: 10px;">
-        <a href="/new_training"><button type="button" class="btn btn-primary">Add new training</button></a>
+        <h4> Choose training! </h4>
 
     </div>
 
@@ -36,12 +36,25 @@
                     </div>
 
                     <div class="col-xs-6 col-md-2">
-                        <a href="/edit_training/<%=training._id%>"><button type="button" class="btn btn-success">Edit</button></a>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <label><input type="radio" name="optradio">Choose this one!</label>
                     </div>
 
                 </div>
             <% }) %>
+
+            <div class="row">
+                <div class="col-xs-6 col-md-10">
+                </div>
+
+                <div class="col-xs-6 col-md-2">
+                    <select style="float:right;margin-right:30px;">
+                        <option>Nia Nia</option>
+                        <option>Fafeć</option>
+                    </select>
+                </div>
+
+
+            </div>
 
         <% } else { %>   No trainings!
         <% } %>
