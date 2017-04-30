@@ -45,7 +45,8 @@ app.use(routes);
 app.use(signup);
 
 app.get("/", function (req, res) {
-   res.render("index");
+        res.render("admin_pokemons", {pokemonsList: []})
+   //res.render("index");
 });
 
 //var photoPath = path.resolve(__dirname, "offensive-photos-folder");
