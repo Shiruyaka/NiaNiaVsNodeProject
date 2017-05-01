@@ -3,6 +3,7 @@
  */
 var express = require("express");
 var specie = require("./models/specie");
+var training = require("./models/training");
 var navibar = require("./navibar.json");
 
 var router = express.Router();
@@ -29,6 +30,51 @@ router.get("/pokemons", function (req, res) {
             res.render("admin_pokemons", navibar);
         }
     })
+});
+
+router.get("/trainings", function (req, res) {
+    navibar["page"] = req.url;
+
+    training.find({}, function (err, trainings) {
+        if(err){
+            res.send(err);
+        }else{
+            navibar["trainings"] = trainings;
+            res.render("admin_training", navibar);
+        }
+    });
+});
+
+router.get("/users", function (req, res) {
+   navibar["page"] = req.url;
+   navibar["users"] = [];
+
+   res.render("admin_user", navibar);
+});
+
+router.post("/new_training", function (req, res, next) {
+
+    var newTraining = new training({
+     name:req.body.name,
+     health:  req.body.health,
+     agility: req.body.agility,
+     attack:  req.body.attack,
+     defence: req.body.defence
+    });
+
+    newTraining.save(function (err, resp) {
+        if(err){
+            console.log(err);
+        }else{
+           // res.locals.infos("Tfuj start");
+            res.redirect("/admin/trainings");
+        }
+    })
+
+});
+
+router.get("/new_training", function (req, res) {
+   res.render("new_training");
 });
 
 module.exports = router;
