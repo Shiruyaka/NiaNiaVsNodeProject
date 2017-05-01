@@ -1,0 +1,64 @@
+<% include __header.ejs%>
+<% include user_menu.ejs%>
+
+
+<div style="margin:10px;">
+    <div style="padding: 10px;">
+        <h4> Choose training! </h4>
+
+    </div>
+
+
+
+    <div style="padding: 10px;"  class="container">
+        <% if (trainings.length) { %>
+        <% trainings.forEach(function(training) { %>
+        <div class="row">
+
+            <div class="col-xs-6 col-md-2">
+                <h4><%= training.name %></h4>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <h6>health +<%= training.health %></h6>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <h6>agility +<%= training.agility %></h6>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <h6>attack +<%= training.attack %></h6>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <h6>defence +<%= training.defence %></h6>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <label><input type="radio" name="optradio">Choose this one!</label>
+            </div>
+
+        </div>
+        <% }) %>
+
+        <div class="row">
+            <div class="col-xs-6 col-md-10">
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <select style="float:right;margin-right:30px;">
+                    <option>Nia Nia</option>
+                    <option>Fafeć</option>
+                </select>
+            </div>
+
+
+        </div>
+
+        <% } else { %>   No trainings!
+        <% } %>
+    </div>
+</div>
+
+<% include __footer.ejs%>

@@ -75,6 +75,7 @@ app.get('/admin_training', function(req, res) {
         });
 });
 
+
 app.use(function (req, res) {
     res.statusCode = 404;
     res.render("404");

@@ -1,0 +1,25 @@
+<% include __header.ejs%>
+<% include admin_menu.ejs%>
+
+<h1>Edit training</h1>
+
+<div>
+
+    <form action="/signup" method="post" style='width:40%;'>
+
+        <input name="name" type="text" maxlength="25" class="form-control" value="<%- name%>" required autofocus style='margin-bottom: 10px;'>
+
+        <input name="health" type="number"  min="0" maxlength="16" class="form-control" value="<%-health%>" required style='margin-bottom: 10px;'>
+
+        <input name="agility" type="number" min="0" maxlength="40" class="form-control" value="<%-agility%>" required style='margin-bottom: 10px;'>
+
+        <input name="attack" type="number" min="0" maxlength="40" class="form-control" value="<%-attack%>" required style='margin-bottom: 10px;'>
+
+        <input name="defence" type="number" min="0" maxlength="40" class="form-control" value="<%-defence%>" required style='margin-bottom: 10px;'>
+
+        <input type="submit" value="Add" class="btn btn-primary btn-block">
+
+    </form>
+
+</div>
+<% include __footer %>
