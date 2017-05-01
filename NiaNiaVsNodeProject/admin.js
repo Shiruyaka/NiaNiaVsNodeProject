@@ -24,6 +24,14 @@ router.use(function (req, res, next) {
     }
 });
 
+router.use(function (req, res, next) {
+    if(req.query.method == "DELETE"){
+        req.method = 'DELETE';
+        req.url = req.path;
+    }
+    next();
+});
+
 router.get("/home", function (req, res) {
 
     navibar["page"] = req.url;
@@ -44,6 +52,12 @@ router.get("/pokemons", function (req, res) {
             res.render("admin_pokemons", navibar);
         }
     })
+});
+
+router.delete("/edit_training/:id", function (req, res) {
+    training.find({_id: req.params.id}).remove(function () {
+        res.redirect("/admin/trainings");
+    });
 });
 
 router.get("/trainings", function (req, res) {
