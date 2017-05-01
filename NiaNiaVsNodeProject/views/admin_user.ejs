@@ -1,0 +1,73 @@
+<% include __header.ejs%>
+<% include admin_menu.ejs%>
+
+
+<div style="margin:10px;">
+    <div style="padding: 10px;">
+        <a href="/new_admin"><button type="button" class="btn btn-primary">Add new admin</button></a>
+
+    </div>
+
+
+
+    <div style="padding: 10px;"  class="container">
+
+        <div class="row">
+
+            <div class="col-xs-6 col-md-2">
+                <h4>Username</h4>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h4>First name</h4>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h4>Last name</h4>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <h4>Role</h4>
+            </div>
+
+
+            <div class="col-xs-6 col-md-2">
+            </div>
+
+        </div>
+
+        <% if (users.length) { %>
+        <% users.forEach(function(user) { %>
+        <div class="row">
+
+            <div class="col-xs-6 col-md-2">
+                <h5><%= user.username %></h5>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5><%= user.first_name %></h5>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5><%= user.last_name %></h5>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <h5><%= user.role %></h5>
+            </div>
+
+
+            <div class="col-xs-6 col-md-2">
+                <a href="/edit_user/<%=user._id%>"><button type="button" class="btn btn-success">Edit</button></a>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+
+        </div>
+        <% }) %>
+
+        <% } else { %>   No trainings!
+        <% } %>
+    </div>
+</div>
+
+<% include __footer.ejs%>

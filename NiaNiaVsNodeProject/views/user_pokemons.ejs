@@ -1,0 +1,53 @@
+<% include __header.ejs%>
+<% include user_menu.ejs%>
+
+
+<div style="margin:10px;">
+    <div style="padding: 10px;">
+        <a href="/user_new_pokemon"><button type="button" class="btn btn-primary">Add new pokemon</button></a>
+
+    </div>
+
+
+
+    <div style="padding: 10px;"  class="container">
+
+        <div class="row">
+
+            <div class="col-xs-6 col-md-3">
+                <h4>Name</h4>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h4>Specie</h4>
+            </div>
+
+        </div>
+
+        <% if (pokemons.length) { %>
+        <% pokemons.forEach(function(pokemon) { %>
+        <div class="row">
+
+            <div class="col-xs-6 col-md-3">
+                <h5><%= pokemon.name %></h5>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5><%= pokemon.specie %></h5>
+            </div>
+
+
+            <div class="col-xs-6 col-md-3">
+                <a href="/detail_pokemon/<%=pokemon._id%>"><button type="button" class="btn btn-success">Details</button></a>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+
+        </div>
+        <% }) %>
+
+        <% } else { %>   No pokemons!
+        <% } %>
+    </div>
+</div>
+
+<% include __footer.ejs%>
