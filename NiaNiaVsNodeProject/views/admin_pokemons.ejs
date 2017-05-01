@@ -1,38 +1,47 @@
-<% include __header.ejs%>
-
-
+<% include __header.ejs %>
 <% include admin_menu.ejs %>
 
 
-<div class="btn-group" role="group" style="margin: 2%">
+<div class="btn-group" role="group" style="margin: 10px">
 
-    <button type="button" class="btn btn-default">Add new</button>
-    <button type="button" class="btn btn-default">Delete</button>
+    <a href="/admin/add_pokemon"><button type="button" class="btn btn-primary">Add new specie</button></a>
 
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-6 col-md-6">
-            Nazwa
+        <div class="col-xs-6 col-md-5">
+            Name
         </div>
 
-        <div class="col-xs-6 col-md-6">
+        <div class="col-xs-6 col-md-5">
             Photo
         </div>
+
     </div>
 </div>
 
-<% pokemonsList.forEach(function(pokemon) { %>
-<div class="row">
-    <div class="col-xs-6 col-md-6">
-        pokemon.name
-    </div>
+<div style="padding: 10px;" class="container">
+    <% if (pokemonsList.length) { %>
+        <% pokemonsList.forEach(function(pokemon) { %>
+            <div class="row">
+                <div class="col-xs-6 col-md-5">
+                    <%- pokemon.name %>
+                </div>
 
-    <div class="col-xs-6 col-md-6">
-        pokemon.photo
-    </div>
+                <div class="col-xs-6 col-md-5">
+                    <%- pokemon.photo %>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="/admin/edit_pokemon/<%-pokemon._id%>"><button type="button" class="btn btn-success">Edit</button></a>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+    No species!
+    <% } %>
 </div>
-<% }) %>
 
-<% include __footer.ejs%>
+<% include __footer.ejs %>
