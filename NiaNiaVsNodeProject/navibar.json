@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "Home": "/home",
+    "Pokemons": "/pokemons",
+    "Trainings": "/trainings",
+    "Users": "/users"
+  },
+  "page": ""
+}

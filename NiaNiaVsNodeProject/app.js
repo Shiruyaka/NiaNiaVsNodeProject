@@ -15,6 +15,7 @@ var logger = require("morgan");
 var signup = require("./sign-up");
 var routes = require("./utils");
 var Training = require("./models/training");
+var admin = require("./admin");
 
 var app = express();
 mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
@@ -45,9 +46,15 @@ app.use(routes);
 app.use(signup);
 
 app.get("/", function (req, res) {
-        res.render("admin_pokemons", {pokemonsList: []})
-   //res.render("index");
+    if(req.isAuthenticated()){
+        res.redirect("/" + req.user.role + "/" + "home");
+    }else{
+        res.render("index");
+    }
 });
+
+
+app.use("/admin", admin);
 
 //var photoPath = path.resolve(__dirname, "offensive-photos-folder");
 //app.use("/offensive", express.static(photoPath));
