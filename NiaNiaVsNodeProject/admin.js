@@ -5,8 +5,24 @@ var express = require("express");
 var specie = require("./models/specie");
 var training = require("./models/training");
 var navibar = require("./navibar.json");
+var users = require("./models/user");
 
 var router = express.Router();
+
+
+router.use(function (req, res, next) {
+    if(req.isAuthenticated()){
+        if(req.user.role == 'admin'){
+            next();
+        }else{
+            res.statusCode = 403;
+            res.render("403");
+        }
+    }else{
+        res.statusCode = 401;
+        res.render("401");
+    }
+});
 
 router.get("/home", function (req, res) {
 
@@ -17,8 +33,6 @@ router.get("/home", function (req, res) {
 
 router.get("/pokemons", function (req, res) {
 
-    console.log(navibar);
-    if(req.isAuthenticated() && req.user.role == 'admin')
     specie.find({}, function (err, pokemons) {
         if(err)
         { res.send(err); }
@@ -47,9 +61,16 @@ router.get("/trainings", function (req, res) {
 
 router.get("/users", function (req, res) {
    navibar["page"] = req.url;
-   navibar["users"] = [];
 
-   res.render("admin_user", navibar);
+    users.find({}, function (err, users) {
+       if(err){
+           console.log(err);
+       }else{
+           navibar["users"] = users;
+           res.render("admin_user", navibar);
+       }
+    });
+
 });
 
 router.post("/new_training", function (req, res, next) {
