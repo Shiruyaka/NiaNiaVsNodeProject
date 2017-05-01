@@ -1,0 +1,23 @@
+<% include __header.ejs%>
+
+<h1>Add new pokemon</h1>
+
+<div>
+
+    <form action="" method="post" style='width:40%;'>
+
+        <input name="name" type="text" maxlength="25" class="form-control" placeholder="Name" required autofocus style='margin-bottom: 10px;'>
+
+        <input name="username" type="text" maxlength="25" class="form-control" value="<%- currentUser.name %>" required autofocus style='margin-bottom: 10px;' readonly>
+
+        <select class="form-control">
+            <option>Pikachu</option>
+            <option>Togepi</option>
+        </select>
+
+        <input type="submit" value="Add" class="btn btn-primary btn-block">
+
+    </form>
+
+</div>
+<% include __footer %>
