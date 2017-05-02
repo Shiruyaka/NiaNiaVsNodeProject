@@ -77,38 +77,12 @@ router.get("/pokemons", function (req, res) {
     })
 });
 
-// router.post("/add_pokemon", function (req, res) {
-//
-//     console.log(req);
-//
-//     upload(req, res, function (err) {
-//         if(err){
-//             console.log(err);
-//         }else{
-//
-//             var newSpecie = new Specie({
-//                 name: req.body.name
-//             });
-//
-//             console.log(req.body.photo);
-//
-//             newSpecie.save(function (err, resp) {
-//                 if(err){
-//                     console.log(err);
-//                 }else{
-//                     res.redirect("/admin/pokemons");
-//                 }
-//             })
-//         }
-//     });
-// });
-
 router.use(express.static(path.resolve(__dirname, "pokemon_images")));
 
 router.post("/add_pokemon", upload.single('file'), function (req, res) {
-    var file = ".\\" + req.file.path + '.' + req.file.mimetype.split('/')[1];
-    console.log(path.resolve(file));
-   fs.rename(req.file.path, path.resolve(file), function (err) {
+    var file = path.resolve(req.file.path + '.' + req.file.mimetype.split('/')[1]);
+
+   fs.rename(req.file.path, (file), function (err) {
        if(err){
            console.log(err);
        }else{
@@ -128,6 +102,39 @@ router.post("/add_pokemon", upload.single('file'), function (req, res) {
              });
        }
    })
+});
+
+router.delete("/edit_pokemon/:id", function (req, res) {
+    specie.findOne({_id:req.params.id}, function (err, spiece) {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(path.resolve("pokemon_images", spiece.photo));
+            fs.unlink(path.resolve("pokemon_images",spiece.photo), function () {
+                spiece.remove(function (err, resp) {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        res.redirect("/admin/pokemons");
+                    }
+                });
+            });
+        }
+    });
+});
+
+router.get("/edit_pokemon/:id(\\w+)", function (req, res) {
+    console.log(req.params.id);
+    specie.findOne({_id:req.params.id}, function (err, pokemon) {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(pokemon.photo);
+
+            res.render("admin_edit_pokemon", {pokemon: pokemon});
+        }
+
+    })
 });
 
 router.get("/add_pokemon", function (req, res) {
