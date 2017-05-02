@@ -61,20 +61,6 @@ app.use("/admin", admin);
 
 app.use(express.static(path.resolve(__dirname, "images")));
 
-app.get('/admin_training', function(req, res) {
-
-    Training.find({},function (err, trainings) {
-            if (err)
-                res.send(err);
-
-            console.log(trainings);
-
-            res.render('admin_training', {
-                trainings: trainings
-            });
-        });
-});
-
 
 app.use(function (req, res) {
     res.statusCode = 404;

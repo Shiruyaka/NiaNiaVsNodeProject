@@ -8,6 +8,7 @@ var navibar = require("./navibar.json");
 var users = require("./models/user");
 var specie = require("./models/specie");
 var path = require("path");
+var fs = require('fs');
 
 var router = express.Router();
 //
@@ -25,7 +26,7 @@ var router = express.Router();
 //                          {fileSize: 4000000, files:1}
 //                     });
 
-var upload = multer({dest: '/pokemon_images/'});
+var upload = multer({dest: 'pokemon_images/'});
 
 router.use(function (req, res, next) {
     if(req.isAuthenticated()){
@@ -102,15 +103,30 @@ router.get("/pokemons", function (req, res) {
 //     });
 // });
 
+router.use(express.static(path.resolve(__dirname, "pokemon_images")));
+
 router.post("/add_pokemon", upload.single('file'), function (req, res) {
-   var file = __dirname + '/' + req.file.filename;
-   fs.rename(req.file.path, file, function (err) {
+    var file = ".\\" + req.file.path + '.' + req.file.mimetype.split('/')[1];
+    console.log(path.resolve(file));
+   fs.rename(req.file.path, path.resolve(file), function (err) {
        if(err){
            console.log(err);
        }else{
            console.log(req.file.filename);
-       }
 
+           var newSpecie = new specie({
+                 name: req.body.name,
+                 photo: req.file.filename + '.' +req.file.mimetype.split('/')[1]
+           });
+
+           newSpecie.save(function (err, resp) {
+                 if(err){
+                     console.log(err);
+                 }else{
+                     res.redirect("/admin/pokemons");
+                 }
+             });
+       }
    })
 });
 
