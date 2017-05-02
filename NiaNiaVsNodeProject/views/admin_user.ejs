@@ -4,7 +4,7 @@
 
 <div style="margin:10px;">
     <div style="padding: 10px;">
-        <a href="/new_admin"><button type="button" class="btn btn-primary">Add new admin</button></a>
+        <a href="/admin/new_admin"><button type="button" class="btn btn-primary">Add new admin</button></a>
 
     </div>
 
@@ -58,8 +58,8 @@
 
 
             <div class="col-xs-6 col-md-2">
-                <a href="/edit_user/<%=user._id%>"><button type="button" class="btn btn-success">Edit</button></a>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <a href="/admin/edit_user/<%=user._id%>"><button type="button" class="btn btn-success">Edit</button></a>
+                <a href="/admin/edit_user/<%=user._id%>?method=DELETE"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>
 
         </div>

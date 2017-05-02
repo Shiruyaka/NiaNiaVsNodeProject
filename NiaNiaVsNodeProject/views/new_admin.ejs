@@ -1,11 +1,10 @@
 <% include __header.ejs%>
-<% include admin_menu.ejs%>
 
 <h1>Add new admin</h1>
 
 <div>
 
-    <form action="/signup" method="post" style='width:40%;'>
+    <form action="/admin/new_admin" method="post" style='width:40%;'>
 
         <input name="username" type="text" maxlength="25" class="form-control" placeholder="Username" required autofocus style='margin-bottom: 10px;'>
 

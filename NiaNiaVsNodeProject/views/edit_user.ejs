@@ -1,21 +1,18 @@
 <% include __header.ejs%>
-<% include admin_menu.ejs%>
 
 <h1>Edit user</h1>
 
 <div>
 
-    <form action="/signup" method="post" style='width:40%;'>
+    <form action="/admin/edit_user/<%=user._id%>?method=PATCH" method="post" style='width:40%;'>
 
-        <input name="username" type="text" maxlength="25" class="form-control" value=<%-username%> required autofocus style='margin-bottom: 10px;'>
+        <input name="username" type="text" maxlength="25" class="form-control" value=<%-user.username%> required autofocus style='margin-bottom: 10px;'>
 
-        <input name="password" type="password"  min="0" maxlength="16" class="form-control" value="<%-password%>" required style='margin-bottom: 10px;'>
+        <input name="first_name" type="text" min="0" maxlength="40" class="form-control" value="<%-user.first_name%>" required style='margin-bottom: 10px;'>
 
-        <input name="first_name" type="text" min="0" maxlength="40" class="form-control" value="<%-first_name%>" required style='margin-bottom: 10px;'>
+        <input name="last_name" type="text" min="0" maxlength="40" class="form-control" value="<%-user.last_name%>" required style='margin-bottom: 10px;'>
 
-        <input name="last_name" type="text" min="0" maxlength="40" class="form-control" value="<%-last_name%>" required style='margin-bottom: 10px;'>
-
-        <input name="role" type="text" min="0" maxlength="40" class="form-control" value="<%-role%>" readonly required style='margin-bottom: 10px;'>
+        <input name="role" type="text" min="0" maxlength="40" class="form-control" value="<%-user.role%>" readonly required style='margin-bottom: 10px;'>
 
         <input type="submit" value="Save" class="btn btn-primary btn-block">
 

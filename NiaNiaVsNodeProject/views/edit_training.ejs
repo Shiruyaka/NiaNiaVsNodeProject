@@ -1,21 +1,20 @@
 <% include __header.ejs%>
-<% include admin_menu.ejs%>
 
 <h1>Edit training</h1>
 
 <div>
 
-    <form action="/signup" method="post" style='width:40%;'>
+    <form action="/admin/edit_training/<%- training._id%>?method=PATCH"  method="post" style='width:40%;'>
 
-        <input name="name" type="text" maxlength="25" class="form-control" value="<%- name%>" required autofocus style='margin-bottom: 10px;'>
+        <input name="name" type="text" maxlength="25" class="form-control" value="<%- training.name%>" required autofocus style='margin-bottom: 10px;'>
 
-        <input name="health" type="number"  min="0" maxlength="16" class="form-control" value="<%-health%>" required style='margin-bottom: 10px;'>
+        <input name="health" type="number"  min="0" maxlength="16" class="form-control" value="<%- training.health%>" required style='margin-bottom: 10px;'>
 
-        <input name="agility" type="number" min="0" maxlength="40" class="form-control" value="<%-agility%>" required style='margin-bottom: 10px;'>
+        <input name="agility" type="number" min="0" maxlength="40" class="form-control" value="<%-training.agility%>" required style='margin-bottom: 10px;'>
 
-        <input name="attack" type="number" min="0" maxlength="40" class="form-control" value="<%-attack%>" required style='margin-bottom: 10px;'>
+        <input name="attack" type="number" min="0" maxlength="40" class="form-control" value="<%-training.attack%>" required style='margin-bottom: 10px;'>
 
-        <input name="defence" type="number" min="0" maxlength="40" class="form-control" value="<%-defence%>" required style='margin-bottom: 10px;'>
+        <input name="defence" type="number" min="0" maxlength="40" class="form-control" value="<%-training.defence%>" required style='margin-bottom: 10px;'>
 
         <input type="submit" value="Save" class="btn btn-primary btn-block">
 

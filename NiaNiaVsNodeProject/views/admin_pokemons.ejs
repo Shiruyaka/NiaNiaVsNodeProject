@@ -1,22 +1,20 @@
 <% include __header.ejs %>
 <% include admin_menu.ejs %>
 
+<div style="margin:10px;">
+    <div class="btn-group" role="group" style="margin: 10px">
+        <a href="/admin/add_pokemon"><button type="button" class="btn btn-primary">Add new specie</button></a>
+    </div>
 
-<div class="btn-group" role="group" style="margin: 10px">
+    <div class="container"  style="padding: 10px;">
+        <div class="row">
+            <div class="col-xs-6 col-md-5">
+                Name
+            </div>
 
-    <a href="/admin/add_pokemon"><button type="button" class="btn btn-primary">Add new specie</button></a>
-
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-6 col-md-5">
-            Name
-        </div>
-
-        <div class="col-xs-6 col-md-5">
-            Photo
-        </div>
+            <div class="col-xs-6 col-md-5">
+                Photo
+            </div>
 
     </div>
 </div>
@@ -42,6 +40,7 @@
     <% } else { %>
     No species!
     <% } %>
+</div>
 </div>
 
 <% include __footer.ejs %>
