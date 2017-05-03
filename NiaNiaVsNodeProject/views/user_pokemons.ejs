@@ -7,7 +7,8 @@
 
         <% if (pokemons.length < 6) { %>
             <a href="/user/new_pokemon"><button type="button" class="btn btn-primary">Add new pokemon</button></a>
-        <% } else { %>   You can have only 6 pokemons.
+        <% } else { %>
+            <a href="/user/new_pokemon"><button type="button" disabled class="btn btn-primary">Add new pokemon</button></a>
         <% } %>
 
     </div>

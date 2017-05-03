@@ -6,7 +6,8 @@ var trainingSchema = mongoose.Schema(
         health: {type: Number, required:true},
         agility: {type: Number, required:true},
         attack: {type: Number, required:true},
-        defence: {type: Number, required:true}
+        defence: {type: Number, required:true},
+        duration: {type: Number, required: true}
     }
 );
 

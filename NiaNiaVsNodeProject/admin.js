@@ -147,6 +147,7 @@ router.patch("/edit_training/:id", function (req, res) {
             training["agility"] = req.body.agility;
             training["attack"] = req.body.attack;
             training["defence"] = req.body.defence;
+            training['duration'] = req.body.duration;
 
             training.save(function (err, resp) {
                 if(err){
@@ -186,7 +187,8 @@ router.post("/new_training", function (req, res, next) {
         health:  req.body.health,
         agility: req.body.agility,
         attack:  req.body.attack,
-        defence: req.body.defence
+        defence: req.body.defence,
+        duration: req.body.duration
     });
 
     newTraining.save(function (err, resp) {

@@ -41,7 +41,7 @@ router.use(express.static(path.resolve(__dirname, "pokemon_images")));
 
 router.get("/pokemons", function (req, res) {
 
-    pokemons.find({id_user: req.user._id}, function (err, pokes) {
+    pokemons.find({id_user: req.user._id, on_training: false}, function (err, pokes) {
         if(err){
             console.log(err);
         }else{
@@ -103,7 +103,8 @@ router.post("/new_pokemon", function (req, res, next) {
     var newPokemon = new pokemons({
         name: req.body.name,
         specie:  req.body.sp,
-        id_user: req.user._id
+        id_user: req.user._id,
+        on_training: false
     });
 
     var new_Stats = new statistics({
@@ -139,7 +140,7 @@ router.delete("/pokemon_detail/:id", function (req, res) {
 router.get("/trainings", function (req, res) {
     navibar["page"] = req.url;
 
-    pokemons.find({id_user: req.user._id}, function (err, pokes) {
+    pokemons.find({id_user: req.user._id, on_training: false}, function (err, pokes) {
         if(err){
             console.log(err);
         }else{
