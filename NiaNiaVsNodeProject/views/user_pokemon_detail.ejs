@@ -1,0 +1,23 @@
+<% include __header.ejs%>
+<% include user_menu.ejs%>
+
+<div class="row" style="margin: 10px">
+    <div class="col-xs-12 col-md-6" style="text-align: center">
+        <img src="../<%- sp.photo %>" height="200" width="200"></img>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+        <p><h4>Name: </h4> <%- pokemon.name %> </p>
+        <p><h4>Specie: </h4> <%- sp.name %> </p>
+        <p><h4>Statistic: </h4> <h5>health: <%= stats.health %> </h5>
+                                <h5>agility: <%- stats.agility %></h5>
+                                <h5>attack: <%- stats.attack %></h5>
+                                <h5>defence: <%- stats.defense %></h5>
+        </p>
+
+    </div>
+
+</div>
+
+
+<% include __footer.ejs%>

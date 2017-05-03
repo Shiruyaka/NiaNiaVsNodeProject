@@ -3,10 +3,10 @@ var mongoose = require("mongoose");
 var statisticSchema = mongoose.Schema(
     {
         id_pokemon: {type:String, required:true},
-        health: {type:Integer, required:true},
-        agility: {type:Integer, required:true},
-        attack: {type:Integer, required:true},
-        defense: {type:Integer, required:true},
+        health: {type:Number, required:true},
+        agility: {type:Number, required:true},
+        attack: {type:Number, required:true},
+        defense: {type:Number, required:true},
         date: {type:Date, required:true}
     }
 );

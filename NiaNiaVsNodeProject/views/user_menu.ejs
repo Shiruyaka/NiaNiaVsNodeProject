@@ -1,5 +1,11 @@
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Pokemons</a></li>
-    <li><a href="/user_training">Trenings</a></li>
+    <% for(var title in nav)  { %>
+    <% if (nav[title] == page) { %>
+    <li class="active">
+        <a href="<%- '/' +  currentUser.role + nav[title] %>"> <%- nav[title].split('/')[1] %></a>
+    </li>
+    <% } else { %>
+    <li><a href="<%- '/' + currentUser.role + nav[title] %>"><%- nav[title].split('/')[1] %></a></li>
+    <% } %>
+    <% } %>
 </ul>

@@ -4,7 +4,7 @@ var pokemonSchema = mongoose.Schema(
     {
         id_user: {type:String, required:true},
         name: {type:String},
-        spiece: {type:String, required:true}
+        specie: {type:String, required:true}
     }
 );
 

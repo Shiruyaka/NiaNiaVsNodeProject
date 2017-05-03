@@ -15,45 +15,54 @@
         <% trainings.forEach(function(training) { %>
         <div class="row">
 
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-12 col-md-2">
                 <h4><%= training.name %></h4>
             </div>
 
-            <div class="col-xs-6 col-md-2">
-                <h6>health +<%= training.health %></h6>
+            <div class="col-xs-12 col-md-2">
+                <h5>health +<%= training.health %></h5>
             </div>
 
-            <div class="col-xs-6 col-md-2">
-                <h6>agility +<%= training.agility %></h6>
+            <div class="col-xs-12 col-md-2">
+                <h5>agility +<%= training.agility %></h5>
             </div>
 
-            <div class="col-xs-6 col-md-2">
-                <h6>attack +<%= training.attack %></h6>
+            <div class="col-xs-12 col-md-2">
+                <h5>attack +<%= training.attack %></h5>
             </div>
 
-            <div class="col-xs-6 col-md-2">
-                <h6>defence +<%= training.defence %></h6>
+            <div class="col-xs-12 col-md-2">
+                <h5>defence +<%= training.defence %></h5>
             </div>
 
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-12 col-md-2">
                 <label><input type="radio" name="optradio">Choose this one!</label>
             </div>
 
         </div>
         <% }) %>
 
-        <div class="row">
-            <div class="col-xs-6 col-md-10">
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-xs-12 col-md-10">
             </div>
 
-            <div class="col-xs-6 col-md-2">
-                <select class="form-control" style="float:right;margin-right:30px;">
-                    <option>Nia Nia</option>
-                    <option>Fafeć</option>
+            <div class="col-xs-12 col-md-2">
+                <select class="form-control" style="float:right;" name="pokemon">
+                    <% pokemons.forEach(function(pokemon) { %>
+                        <option id="<%= pokemon._id %>"><%= pokemon.name %></option>
+                    <% }) %>
                 </select>
             </div>
+        </div>
 
 
+        <div class="row">
+            <div class="col-xs-12 col-md-10">
+            </div>
+
+            <div class="col-xs-12 col-md-2">
+                <a href="#"><button type="button" class="btn btn-primary">Send on training!</button></a>
+            </div>
         </div>
 
         <% } else { %>   No trainings!

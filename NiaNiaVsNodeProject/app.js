@@ -16,6 +16,7 @@ var signup = require("./sign-up");
 var routes = require("./utils");
 var Training = require("./models/training");
 var admin = require("./admin");
+var user = require("./user");
 
 var app = express();
 mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
@@ -55,6 +56,7 @@ app.get("/", function (req, res) {
 
 
 app.use("/admin", admin);
+app.use("/user", user);
 
 //var photoPath = path.resolve(__dirname, "offensive-photos-folder");
 //app.use("/offensive", express.static(photoPath));

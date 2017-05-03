@@ -4,15 +4,16 @@
 
 <div>
 
-    <form action="" method="post" style='width:40%;'>
+    <form action="/user/new_pokemon" method="post" style='width:40%;'>
 
         <input name="name" type="text" maxlength="25" class="form-control" placeholder="Name" required autofocus style='margin-bottom: 10px;'>
 
-        <input name="username" type="text" maxlength="25" class="form-control" value="<%- currentUser.name %>" required autofocus style='margin-bottom: 10px;' readonly>
+        <input name="username" type="text" maxlength="25" class="form-control" value="<%- currentUser.username %>" required autofocus style='margin-bottom: 10px;' readonly>
 
-        <select class="form-control">
-            <option>Pikachu</option>
-            <option>Togepi</option>
+        <select class="form-control" required name="sp" style='margin-bottom: 10px;'>
+            <% specie.forEach(function(s) { %>
+                <option><%- s.name %></option>
+            <% }) %>
         </select>
 
         <input type="submit" value="Add" class="btn btn-primary btn-block">

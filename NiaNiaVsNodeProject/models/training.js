@@ -3,10 +3,10 @@ var mongoose = require("mongoose");
 var trainingSchema = mongoose.Schema(
     {
         name: {type: String, required:true},
-        health: {type: Number},
-        agility: {type: Number},
-        attack: {type: Number},
-        defence: {type: Number}
+        health: {type: Number, required:true},
+        agility: {type: Number, required:true},
+        attack: {type: Number, required:true},
+        defence: {type: Number, required:true}
     }
 );
 

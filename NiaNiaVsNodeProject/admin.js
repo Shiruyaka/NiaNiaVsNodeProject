@@ -11,20 +11,6 @@ var path = require("path");
 var fs = require('fs');
 
 var router = express.Router();
-//
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, '/pokemon_images');
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, req.body.name);
-//     }
-// });
-
-// var upload = multer({storage: storage,
-//                      limits:
-//                          {fileSize: 4000000, files:1}
-//                     });
 
 var upload = multer({dest: 'pokemon_images/'});
 
@@ -51,6 +37,10 @@ router.use(function (req, res, next) {
         req.method = "PATCH";
         req.url = req.path;
     }
+    else if(req.query.method == "PUT"){
+        req.method = "PUT";
+        req.url = req.path;
+    }
 
     next();
 });
@@ -58,7 +48,6 @@ router.use(function (req, res, next) {
 router.get("/home", function (req, res) {
 
     navibar["page"] = req.url;
-    console.log(navibar);
    res.render("index", navibar);
 });
 
@@ -86,7 +75,6 @@ router.post("/add_pokemon", upload.single('file'), function (req, res) {
        if(err){
            console.log(err);
        }else{
-           console.log(req.file.filename);
 
            var newSpecie = new specie({
                  name: req.body.name,
@@ -109,7 +97,6 @@ router.delete("/edit_pokemon/:id", function (req, res) {
         if(err){
             console.log(err);
         }else{
-            console.log(path.resolve("pokemon_images", spiece.photo));
             fs.unlink(path.resolve("pokemon_images",spiece.photo), function () {
                 spiece.remove(function (err, resp) {
                     if(err){
@@ -124,18 +111,17 @@ router.delete("/edit_pokemon/:id", function (req, res) {
 });
 
 router.get("/edit_pokemon/:id(\\w+)", function (req, res) {
-    console.log(req.params.id);
     specie.findOne({_id:req.params.id}, function (err, pokemon) {
         if(err){
             console.log(err);
         }else{
-            console.log(pokemon.photo);
 
             res.render("admin_edit_pokemon", {pokemon: pokemon});
         }
 
     })
 });
+
 
 router.get("/add_pokemon", function (req, res) {
     res.render("admin_add_pokemon");
@@ -254,7 +240,6 @@ router.post("/new_admin", function (req, res, next) {
 });
 
 router.delete("/edit_user/:id", function (req, res) {
-    console.log(req.params.id);
     users.findOne({_id: req.params.id}).remove(function () {
         res.redirect("/admin/users");
     });
