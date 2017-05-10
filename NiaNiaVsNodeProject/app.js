@@ -25,7 +25,7 @@ mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
 setUpPassport();
 
 
-app.set("port", 3000);
+app.set("port", 3001);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 

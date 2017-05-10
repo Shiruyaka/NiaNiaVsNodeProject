@@ -1,0 +1,57 @@
+<% include __header.ejs%>
+<% include user_menu.ejs%>
+
+<div style="margin:10px;">
+
+
+
+    <div style="padding: 10px;"  class="container">
+
+        <h4>Pokemons on training</h4>
+
+        <div class="row">
+
+            <div class="col-xs-6 col-md-3">
+                <h5>Name</h5>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5>Return time</h5>
+            </div>
+
+        </div>
+
+        <% if (pokemons.length) { %>
+        <% pokemons.forEach(function(pokemon) { %>
+        <div class="row" style="margin-bottom: 10px">
+
+            <div class="col-xs-5 col-md-3">
+                <h6><%= pokemon.pokemon_name %></h6>
+            </div>
+
+            <div class="col-xs-5 col-md-3">
+                <h6><%= pokemon.end_date.getHours() %>:<%= pokemon.end_date.getMinutes() %>:<%= pokemon.end_date.getSeconds() %></h6>
+            </div>
+
+            <div class="col-xs-2 col-md-3">
+                <% if (Date.now() >  pokemon.end_date){%>
+                    <form action="/user/home/<%= pokemon.id_pokemon %>/<%= pokemon.id_training %>" method="post">
+                        <input type="submit" value="OK" class="btn btn-primary">
+                    </form>
+                <% } else {%>
+                    <form action="/user/home/<%= pokemon.id_pokemon %>/<%= pokemon.id_training %>" method="post">
+                        <input disabled type="submit" value="OK" class="btn btn-primary">
+                    </form>
+                <%}%>
+            </div>
+
+
+        </div>
+        <% }) %>
+
+        <% } else { %>   No pokemons on training!
+        <% } %>
+    </div>
+</div>
+
+<% include __footer.ejs%>

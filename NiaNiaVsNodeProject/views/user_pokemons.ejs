@@ -44,7 +44,15 @@
 
             <div class="col-xs-6 col-md-3">
                 <a href="/user/detail_pokemon/<%=pokemon._id%>"><button type="button" class="btn btn-success">Details</button></a>
-                <a href="/user/pokemon_detail/<%=pokemon._id%>?method=DELETE"><button type="button" class="btn btn-danger">Delete</button></a>
+
+
+                <% if (pokemon.on_training === true) { %>
+                    <a href="/user/pokemon_detail/<%=pokemon._id%>?method=DELETE"><button disabled type="button" class="btn btn-danger">Delete</button></a>
+                <% } else { %>
+                    <a href="/user/pokemon_detail/<%=pokemon._id%>?method=DELETE"><button type="button" class="btn btn-danger">Delete</button></a>
+                <% } %>
+
+
             </div>
 
         </div>

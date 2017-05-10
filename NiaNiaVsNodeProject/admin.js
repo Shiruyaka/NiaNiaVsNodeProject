@@ -9,6 +9,7 @@ var users = require("./models/user");
 var specie = require("./models/specie");
 var path = require("path");
 var fs = require('fs');
+var pokemons = require("./models/pokemon");
 
 var router = express.Router();
 
@@ -45,10 +46,40 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get("/home", function (req, res) {
 
-    navibar["page"] = req.url;
-   res.render("index", navibar);
+router.get("/home", function (req, res) {
+    pokemons.find({}, function (err, pokes) {
+        if(err) console.log(err);
+        else{
+            pokemons.find({on_training: true}, function (err, pokes_on_training) {
+                if(err) console.log(err);
+                else{
+                    users.find({}, function (err, users_in_academy) {
+                        if(err) console.log(err);
+                        else{
+                            specie.find({}, function (err, species_in_academy) {
+                                if(err) console.log(err)
+                                else{
+                                    training.find({}, function (err, trainings) {
+                                        if(err) console.log(err);
+                                        else{
+                                            navibar["page"] = req.url;
+                                            navibar["pokemons"] = pokes.length;
+                                            navibar["on_traingind"] = pokes_on_training.length;
+                                            navibar["users"] = users_in_academy.length;
+                                            navibar["specie"] = species_in_academy.length;
+                                            navibar['trainings'] = trainings.length;
+                                            res.render("admin_home", navibar);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
 });
 
 router.get("/pokemons", function (req, res) {
