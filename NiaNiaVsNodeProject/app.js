@@ -20,6 +20,7 @@ var user = require("./user");
 var pokemons = require("./models/pokemon");
 var users = require("./models/user");
 var crypto = require("crypto");
+var profil = require("./profil");
 
 var app = express();
 mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
@@ -66,40 +67,11 @@ app.get("/", function (req, res) {
     }
 });
 
-app.get("/myProfile", function (req, res) {
-    pokemons.find({id_user : req.user._id}, function (err, pokes) {
-        if(err){
-            console.log(err);
-        }else{
-            res.render("about_page", {"pokemons": pokes});
-        }
-    });
-});
-
-app.get("/change_passwd", function (req, res) {
-    res.render("change_passwd");
-});
-
-app.patch("/change_passwd", function (req, res) {
-    console.log(req.user.password)
-    console.log(crypto.createHash('md5').update(req.body.old).digest('hex'))
-    if(req.user.checkPassword(req.body.old) === true){
-        if(req.body.new === req.body.second_new){
-            res.redirect("home");
-        }else{
-            console.log('różne')
-            res.redirect("change_passwd");
-        }
-    }else{
-        console.log('złe stare')
-        res.redirect("change_passwd");
-    }
-});
 
 
 app.use("/admin", admin);
 app.use("/user", user);
-
+app.use("/profile", profil);
 //var photoPath = path.resolve(__dirname, "offensive-photos-folder");
 //app.use("/offensive", express.static(photoPath));
 
@@ -114,6 +86,7 @@ app.get("/403", function (req, res) {
     res.statusCode = 403;
     res.render("403");
 });
+
 app.use(function (req, res) {
     res.statusCode = 404;
     res.render("404");

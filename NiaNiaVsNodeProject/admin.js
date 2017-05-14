@@ -20,11 +20,9 @@ router.use(function (req, res, next) {
         if(req.user.role == 'admin'){
             next();
         }else{
-            res.statusCode = 403;
             res.redirect("/403");
         }
     }else{
-        res.statusCode = 401;
         res.redirect("/401")
     }
 });
@@ -58,7 +56,7 @@ router.get("/home", function (req, res) {
                         if(err) console.log(err);
                         else{
                             specie.find({}, function (err, species_in_academy) {
-                                if(err) console.log(err)
+                                if(err) console.log(err);
                                 else{
                                     training.find({}, function (err, trainings) {
                                         if(err) console.log(err);

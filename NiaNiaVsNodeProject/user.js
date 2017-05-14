@@ -15,12 +15,12 @@ router.use(function (req, res, next) {
         if(req.user.role == 'user'){
             next();
         }else{
-            res.statusCode = 403;
+
             res.redirect("/403");
         }
     }else{
-        res.statusCode = 401;
-        res.redirect("/401")
+
+        res.redirect("/401");
     }
 });
 
@@ -273,5 +273,7 @@ router.post("/trainings", function (req, res){
         });
     }
 });
+
+
 
 module.exports = router;
