@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-xs-5 col-md-3">
-                <h6><%= pokemon.end_date.getHours() %>:<%= pokemon.end_date.getMinutes() %>:<%= pokemon.end_date.getSeconds() %></h6>
+                <h6><%= pokemon.end_date.toISOString().replace(/T/, ' ').replace(/\..+/, '')%></h6>
             </div>
 
             <div class="col-xs-2 col-md-3">

@@ -17,6 +17,9 @@ var routes = require("./utils");
 var Training = require("./models/training");
 var admin = require("./admin");
 var user = require("./user");
+var pokemons = require("./models/pokemon");
+var users = require("./models/user");
+var crypto = require("crypto");
 
 var app = express();
 mongoose.connect("mongodb://localhost:27017/pokemonAcademy");
@@ -46,11 +49,50 @@ app.use(passport.session());
 app.use(routes);
 app.use(signup);
 
+app.use(function (req, res, next) {
+    if(req.query.method == "PATCH"){
+        req.method = "PATCH";
+        req.url = req.path;
+    }
+
+    next();
+});
+
 app.get("/", function (req, res) {
     if(req.isAuthenticated()){
         res.redirect("/" + req.user.role + "/" + "home");
     }else{
         res.render("index");
+    }
+});
+
+app.get("/myProfile", function (req, res) {
+    pokemons.find({id_user : req.user._id}, function (err, pokes) {
+        if(err){
+            console.log(err);
+        }else{
+            res.render("about_page", {"pokemons": pokes});
+        }
+    });
+});
+
+app.get("/change_passwd", function (req, res) {
+    res.render("change_passwd");
+});
+
+app.patch("/change_passwd", function (req, res) {
+    console.log(req.user.password)
+    console.log(crypto.createHash('md5').update(req.body.old).digest('hex'))
+    if(req.user.checkPassword(req.body.old) === true){
+        if(req.body.new === req.body.second_new){
+            res.redirect("home");
+        }else{
+            console.log('różne')
+            res.redirect("change_passwd");
+        }
+    }else{
+        console.log('złe stare')
+        res.redirect("change_passwd");
     }
 });
 

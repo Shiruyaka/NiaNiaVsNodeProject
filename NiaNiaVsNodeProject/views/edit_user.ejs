@@ -6,7 +6,7 @@
 
     <form action="/admin/edit_user/<%=user._id%>?method=PATCH" method="post" style='width:40%;'>
 
-        <input name="username" type="text" maxlength="25" class="form-control" value=<%-user.username%> required autofocus style='margin-bottom: 10px;'>
+        <input name="username" type="text" maxlength="25" class="form-control" value="<%-user.username%>" required autofocus style='margin-bottom: 10px;'>
 
         <input name="first_name" type="text" min="0" maxlength="40" class="form-control" value="<%-user.first_name%>" required style='margin-bottom: 10px;'>
 
