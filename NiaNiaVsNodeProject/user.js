@@ -16,11 +16,11 @@ router.use(function (req, res, next) {
             next();
         }else{
             res.statusCode = 403;
-            res.render("403");
+            res.redirect("/403");
         }
     }else{
         res.statusCode = 401;
-        res.render("401");
+        res.redirect("/401")
     }
 });
 
@@ -104,11 +104,11 @@ router.get("/home", function (req, res) {
 
             schedule.find({id_pokemon: {$in: ides}}, function (err, result) {
                 if(err){
-                    console.log(err)
+                    console.log(err);
                 }else{
-                    console.log(result)
+                    console.log(result);
                     navibar["page"] = req.url;
-                    navibar["pokemons"] = result
+                    navibar["pokemons"] = result;
                     res.render("user_home", navibar);
                 }
             })
@@ -263,7 +263,7 @@ router.post("/trainings", function (req, res){
                                         console.log(err);
                                     }
                                 });
-
+                                req.flash("info", "Your pokemon is on training");
                                 res.redirect("/user/trainings");
                             })
                         }

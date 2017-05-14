@@ -21,11 +21,11 @@ router.use(function (req, res, next) {
             next();
         }else{
             res.statusCode = 403;
-            res.render("403");
+            res.redirect("/403");
         }
     }else{
         res.statusCode = 401;
-        res.render("401");
+        res.redirect("/401")
     }
 });
 

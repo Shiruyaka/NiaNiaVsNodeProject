@@ -105,7 +105,15 @@ app.use("/user", user);
 
 app.use(express.static(path.resolve(__dirname, "images")));
 
+app.get("/401", function (req, res) {
+    res.statusCode = 401;
+    res.render("401");
+});
 
+app.get("/403", function (req, res) {
+    res.statusCode = 403;
+    res.render("403");
+});
 app.use(function (req, res) {
     res.statusCode = 404;
     res.render("404");
