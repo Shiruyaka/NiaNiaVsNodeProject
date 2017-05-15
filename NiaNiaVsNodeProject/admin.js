@@ -114,6 +114,7 @@ router.post("/add_pokemon", upload.single('file'), function (req, res) {
                  if(err){
                      console.log(err);
                  }else{
+                     req.flash("info", "New spiece has been added");
                      res.redirect("/admin/pokemons");
                  }
              });
@@ -131,6 +132,7 @@ router.delete("/edit_pokemon/:id", function (req, res) {
                     if(err){
                         console.log(err);
                     }else{
+                        req.flash("info", "Spiece has been deleted");
                         res.redirect("/admin/pokemons");
                     }
                 });
@@ -144,7 +146,7 @@ router.get("/edit_pokemon/:id(\\w+)", function (req, res) {
         if(err){
             console.log(err);
         }else{
-
+            req.flash("info", "Spiece has been edited");
             res.render("admin_edit_pokemon", {pokemon: pokemon});
         }
 
@@ -182,6 +184,7 @@ router.patch("/edit_training/:id", function (req, res) {
                 if(err){
                     console.log(err);
                 }else{
+                    req.flash("info", "Training has been edited");
                     res.redirect("/admin/trainings");
                 }
             });
@@ -192,6 +195,7 @@ router.patch("/edit_training/:id", function (req, res) {
 
 router.delete("/edit_training/:id", function (req, res) {
     training.find({_id: req.params.id}).remove(function () {
+        req.flash("info", "Training has been deleted");
         res.redirect("/admin/trainings");
     });
 });
@@ -224,7 +228,7 @@ router.post("/new_training", function (req, res, next) {
         if(err){
             console.log(err);
         }else{
-            // res.locals.infos("Tfuj start");
+            req.flash("info", "Training has been added");
             res.redirect("/admin/trainings");
         }
     })
@@ -263,7 +267,7 @@ router.post("/new_admin", function (req, res, next) {
         if(err){
             console.log(err);
         }else{
-            // res.locals.infos("Tfuj start");
+            req.flash("info", "New admin has been added");
             res.redirect("/admin/users");
         }
     })
@@ -272,6 +276,7 @@ router.post("/new_admin", function (req, res, next) {
 
 router.delete("/edit_user/:id", function (req, res) {
     users.findOne({_id: req.params.id}).remove(function () {
+        req.flash("info", "User has been deleted");
         res.redirect("/admin/users");
     });
 });
@@ -297,6 +302,7 @@ router.patch("/edit_user/:id", function (req, res) {
             if(err){
                 console.log(err);
             }else{
+                req.flash("info", "User has been edited");
                 res.redirect("/admin/users");
             }
         })

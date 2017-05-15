@@ -78,7 +78,7 @@ router.post("/home/:id_poke/:id_train", function (req, res) {
                                     });
 
 
-
+                                    req.flash("info", "Your pokemon came back from the training");
                                     res.redirect("/user/home");
                                 }
                             });
@@ -203,6 +203,7 @@ router.post("/new_pokemon", function (req, res, next) {
                 if(err){
                     console.log(err);
                 }else{
+                    req.flash("info", "You have added a new pokemon!");
                     res.redirect("/user/pokemons");
                 }
             });
@@ -213,6 +214,7 @@ router.post("/new_pokemon", function (req, res, next) {
 
 router.delete("/pokemon_detail/:id", function (req, res) {
     pokemons.find({_id: req.params.id}).remove(function () {
+        req.flash("info", "You have deleted your pokemon :< ");
         res.redirect("/user/pokemons");
     });
 });
