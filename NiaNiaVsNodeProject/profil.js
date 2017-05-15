@@ -53,11 +53,11 @@ router.patch("/change_passwd", function (req, res, next) {
 
                 }else{
                     req.flash("error", "New passwords are different");
-                    res.redirect("/change_passwd");
+                    res.redirect("change_passwd");
                 }
             }else{
                 req.flash("error", "Old password is incorrect");
-                res.redirect("/change_passwd");
+                res.redirect("change_passwd");
             }
         }
     });
