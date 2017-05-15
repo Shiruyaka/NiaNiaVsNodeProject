@@ -9,6 +9,7 @@ var statistics = require("./models/statistic");
 var path = require("path");
 var router = express.Router();
 var schedule = require("./models/schedule");
+var moment = require("moment");
 
 router.use(function (req, res, next) {
     if(req.isAuthenticated()){
@@ -109,6 +110,7 @@ router.get("/home", function (req, res) {
                     console.log(result);
                     navibar["page"] = req.url;
                     navibar["pokemons"] = result;
+                    navibar["moment"] = moment;
                     res.render("user_home", navibar);
                 }
             })
