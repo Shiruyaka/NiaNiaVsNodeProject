@@ -58,11 +58,13 @@
 
 
             <div class="col-xs-6 col-md-2">
-                <a href="/admin/edit_user/<%=user._id%>"><button type="button" class="btn btn-success">Edit</button></a>
+
                 <% if(user._id.toString() == currentUser._id.toString()){%>
+                    <a href="/admin/edit_user/<%=user._id%>"><button disabled type="button" class="btn btn-success">Edit</button></a>
                     <a disabled href="/admin/edit_user/<%=user._id%>?method=DELETE"><button disabled type="button" class="btn btn-danger">Delete</button></a>
                 <%} else{%>
-                <a href="/admin/edit_user/<%=user._id%>?method=DELETE"><button type="button" class="btn btn-danger">Delete</button></a>
+                    <a href="/admin/edit_user/<%=user._id%>"><button type="button" class="btn btn-success">Edit</button></a>
+                    <a href="/admin/edit_user/<%=user._id%>?method=DELETE"><button type="button" class="btn btn-danger">Delete</button></a>
                 <%}%>
             </div>
 

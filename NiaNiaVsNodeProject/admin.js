@@ -127,16 +127,30 @@ router.delete("/edit_pokemon/:id", function (req, res) {
         if(err){
             console.log(err);
         }else{
-            fs.unlink(path.resolve("pokemon_images",spiece.photo), function () {
-                spiece.remove(function (err, resp) {
-                    if(err){
-                        console.log(err);
+
+            pokemons.find({specie: spiece.name}, function (err, pokes) {
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(pokes);
+                    if (pokes.length == 0) {
+                        fs.unlink(path.resolve("pokemon_images", spiece.photo), function () {
+                            spiece.remove(function (err, resp) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    req.flash("info", "Spiece has been deleted");
+                                    res.redirect("/admin/pokemons");
+                                }
+                            });
+                        });
                     }else{
-                        req.flash("info", "Spiece has been deleted");
+                        req.flash("info", "You cant remove specie if there are pokemons of this specie");
                         res.redirect("/admin/pokemons");
                     }
-                });
+                }
             });
+
         }
     });
 });

@@ -47,6 +47,7 @@ router.patch("/change_passwd", function (req, res, next) {
                             console.log(err);
                             res.redirect("/404");
                         }else{
+                            req.flash("info", "Your password has been changed");
                             res.redirect("/" + req.user.role + "/home");
                         }
                     });

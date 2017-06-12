@@ -275,6 +275,9 @@ router.post("/trainings", function (req, res){
                 }
             });
         });
+    }else {
+        req.flash("info", "Please choose training.");
+        res.redirect("/user/trainings");
     }
 });
 

@@ -66,8 +66,11 @@
             </div>
 
             <div class="col-xs-12 col-md-2">
-
-                        <input type="submit" class="btn btn-primary" value="Send on training!">
+                <%if(pokemons.length == 0){ %>
+                    <input disabled type="submit" class="btn btn-primary" value="Send on training!">
+                <%} else {%>
+                    <input type="submit" class="btn btn-primary" value="Send on training!">
+                <%}%>
 
                 </div>
             </div>
